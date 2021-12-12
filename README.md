@@ -25,5 +25,5 @@ for i in range(len(details['level'])):
         print(str(i) + ": " + str(details['conf'][i]) + "% " + str(details['text'][i]))
 ```
 
-![bounding boxes](https://github.com/idontchop/PokerClockOpticalReader/blob/main/renders/bounding.png)
+![bounding boxes](https://github.com/idontchop/PokerClockOpticalReader/blob/main/renders/bounding2.png)
 
