@@ -25,5 +25,28 @@ for i in range(len(details['level'])):
         print(str(i) + ": " + str(details['conf'][i]) + "% " + str(details['text'][i]))
 ```
 
-![bounding boxes](https://github.com/idontchop/PokerClockOpticalReader/blob/main/renders/bounding2.png)
+![bounding boxes](https://github.com/idontchop/PokerClockOpticalReader/blob/main/renders/pretty.png)
 
+Work to find all rectangles in the tournament board to extract the places section was not successful with OpenCv
+
+```python
+import numpy as np
+
+newImg = np.copy(image)
+
+contours, hierarchy = cv2.findContours(threshold, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+#for c in contours:
+#    approx = cv2.approxPolyDP(c, 0.01 * cv2.arcLength(c, True), True)
+#    if (len(approx) == 4):
+#        cv2.drawContours(newImg, [approx], 0, (0,0,0),5)
+
+for c in contours:
+    x,y,w,h = cv2.boundingRect(c)
+    if w*h > 100000:
+        print(x,y,w,h)
+        newImg = cv2.rectangle(newImg, (x,y), (x+w, y+h), (0,255,0),4)
+
+```
+
+![Rectangles Bounding Boxes](https://github.com/idontchop/PokerClockOpticalReader/blob/main/renders/bounding.png)
